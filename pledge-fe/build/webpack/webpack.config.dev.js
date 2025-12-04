@@ -35,7 +35,8 @@ module.exports = merge(base, {
 
     // 代理配置：解决开发环境跨域问题
     proxy: {
-      '/pos/*': { // 匹配以/pos开头的API请求
+      '/pos/*': {
+        // 匹配以/pos开头的API请求
         target: 'http://b.slasharetest.com/', // 转发到测试服务器
         changeOrigin: true, // 修改请求头中的Origin为目标地址
         secure: true, // 验证SSL证书

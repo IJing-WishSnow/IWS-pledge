@@ -92,7 +92,7 @@ const envChainInfos =
     ? filter(currencyInfos, (c) => c.chainId === 97)
     : filter(currencyInfos, (c) => c.chainId === 56);
 
-export type ChainInfoKeysType = typeof envChainInfos[number]['chainName'];
+export type ChainInfoKeysType = (typeof envChainInfos)[number]['chainName'];
 
 export const chainInfoKeys: ChainInfoKeysType[] = map(envChainInfos, (c) => c.chainName);
 

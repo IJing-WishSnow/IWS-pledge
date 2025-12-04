@@ -34,19 +34,19 @@ const getPledgerBridgeETH = (address?: string) => {
   return new web3.eth.Contract(PledgerBridgeETHAbi, address) as SubContract<PledgerBridgeETH>;
 };
 const getAddressPrivilegesContract = () => {
-  return (new web3.eth.Contract(AddressPrivilegesAbi) as unknown) as {
+  return new web3.eth.Contract(AddressPrivilegesAbi) as unknown as {
     methods: AddressPrivileges;
   };
 };
 
 const getBscPledgeOracleAbiContract = (address: string) => {
-  return (new web3.eth.Contract(BscPledgeOracleAbi, address) as unknown) as {
+  return new web3.eth.Contract(BscPledgeOracleAbi, address) as unknown as {
     methods: BscPledgeOracle;
   };
 };
 
 const getDebtTokenContract = (address: string) => {
-  return (new web3.eth.Contract(DebtTokenAbi, address) as unknown) as {
+  return new web3.eth.Contract(DebtTokenAbi, address) as unknown as {
     methods: DebtToken;
   };
 };

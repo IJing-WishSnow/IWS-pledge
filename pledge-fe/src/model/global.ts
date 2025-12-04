@@ -6,7 +6,7 @@ import DEFAULT_LIST from '_constants/token/pancakeswap.json';
 export const currencies = ['BSC_Mainnet', 'BSC_Testnet'] as const;
 import { TokenList } from '@uniswap/token-lists/dist/types';
 
-export type CurrencyType = typeof currencies[number];
+export type CurrencyType = (typeof currencies)[number];
 const defaultChain = currencyInfos[0];
 
 export const currencyState = atom<CurrencyType>({

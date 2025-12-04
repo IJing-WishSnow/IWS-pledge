@@ -1,9 +1,8 @@
-import React from 'react'
-import { Modal } from '@pancakeswap-libs/uikit'
-import styled from 'styled-components'
-import SlippageToleranceSetting from './SlippageToleranceSetting'
-import TransactionDeadlineSetting from './TransactionDeadlineSetting'
-
+import React from 'react';
+import { Modal } from '@pancakeswap-libs/uikit';
+import styled from 'styled-components';
+import SlippageToleranceSetting from './SlippageToleranceSetting';
+import TransactionDeadlineSetting from './TransactionDeadlineSetting';
 
 const Settingtab = styled.div`
 z-index:10;
@@ -66,18 +65,18 @@ height:28px
 padding:16px
 }
 }
-`
+`;
 // TODO: Fix UI Kit typings
 
 const SettingsModal = ({ translateString }) => {
   return (
-    <Settingtab className='Settingtab'>
-    <Modal title='Transaction Settings' >
-      <SlippageToleranceSetting translateString={translateString} />
-      <TransactionDeadlineSetting translateString={translateString} />
-    </Modal>
+    <Settingtab className="Settingtab">
+      <Modal title="Transaction Settings">
+        <SlippageToleranceSetting translateString={translateString} />
+        <TransactionDeadlineSetting translateString={translateString} />
+      </Modal>
     </Settingtab>
-  )
-}
+  );
+};
 
-export default SettingsModal
+export default SettingsModal;
