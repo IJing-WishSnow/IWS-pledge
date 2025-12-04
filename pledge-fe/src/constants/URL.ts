@@ -13,7 +13,8 @@ const baseUrl = {
   production: 'https://pro.test.com/api', // 生产环境
   v22: 'https://v2-backend.pledger.finance/api/v22', // v22环境
   // v21: 'https://dev-v2-backend.pledger.finance/api/v21',
-  v21: 'https://pledge.rcc-tec.xyz/api/v22', // v21环境
+  // v21: 'https://pledge.rcc-tec.xyz/api/v22', // v21环境
+  v21: 'https://127.0.0.1/api/v22', // v21环境
 };
 
 // Proxy处理器，用于动态生成URL

@@ -32,7 +32,6 @@ func (c *MultiSignPoolController) SetMultiSign(ctx *gin.Context) {
 	}
 
 	res.Response(ctx, statecode.CommonSuccess, nil)
-	return
 }
 
 func (c *MultiSignPoolController) GetMultiSign(ctx *gin.Context) {
@@ -55,5 +54,4 @@ func (c *MultiSignPoolController) GetMultiSign(ctx *gin.Context) {
 	}
 
 	res.Response(ctx, statecode.CommonSuccess, result)
-	return
 }

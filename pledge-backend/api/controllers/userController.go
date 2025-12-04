@@ -1,13 +1,14 @@
 package controllers
 
 import (
-	"github.com/gin-gonic/gin"
 	"pledge-backend/api/common/statecode"
 	"pledge-backend/api/models/request"
 	"pledge-backend/api/models/response"
 	"pledge-backend/api/services"
 	"pledge-backend/api/validate"
 	"pledge-backend/db"
+
+	"github.com/gin-gonic/gin"
 )
 
 type UserController struct {
@@ -31,7 +32,6 @@ func (c *UserController) Login(ctx *gin.Context) {
 	}
 
 	res.Response(ctx, statecode.CommonSuccess, result)
-	return
 }
 
 func (c *UserController) Logout(ctx *gin.Context) {
@@ -43,5 +43,4 @@ func (c *UserController) Logout(ctx *gin.Context) {
 	_, _ = db.RedisDelete(usernameIntf.(string))
 
 	res.Response(ctx, statecode.CommonSuccess, nil)
-	return
 }

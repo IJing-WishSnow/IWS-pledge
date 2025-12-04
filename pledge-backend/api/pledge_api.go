@@ -24,21 +24,31 @@ func main() {
 	models.InitTable()
 
 	//gin bind go-playground-validator
-	validate.BindingValidator()
+	validate.BindingValidator() // 一个自定义验证器的初始化调用，用于绑定到框架（如Gin）的验证器，实现对请求参数的自动验证。
 
 	// websocket server
 	go ws.StartServer()
 
 	// get plgr price from kucoin-exchange
-	go kucoin.GetExchangePrice()
+	go kucoin.GetExchangePrice() // 获取 KuCoin 交易所实时价格数据的函数调用，通常用于获取加密货币的当前交易价格信息。
 
 	// gin start
-	gin.SetMode(gin.ReleaseMode)
+	gin.SetMode(gin.ReleaseMode) // 设置Gin运行模式为发布模式（禁用调试信息）
+
+	// 创建默认Gin应用实例（包含Logger和Recovery中间件）
 	app := gin.Default()
+
+	// 获取静态文件目录路径并设置静态文件路由
 	staticPath := static.GetCurrentAbPathByCaller()
 	app.Static("/storage/", staticPath)
-	app.Use(middlewares.Cors()) // 「 Cross domain Middleware 」
+
+	// 使用跨域中间件
+	app.Use(middlewares.Cors())
+
+	// 初始化应用路由
 	routes.InitRoute(app)
+
+	// 启动HTTP服务，监听配置文件中指定的端口
 	_ = app.Run(":" + config.Config.Env.Port)
 
 }
