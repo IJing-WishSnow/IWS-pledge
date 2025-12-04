@@ -2,18 +2,23 @@ import URL from '_constants/URL';
 import axios from './dataProxy';
 
 /**
- * 用户中心
+ * 用户服务模块
  */
 const userServer = {
   /**
-   * 登录接口
-   * @param {object} data - 请求参数
+   * 获取资金池基础信息
+   * @param chainId - 区块链网络ID
    */
-  async getpoolBaseInfo(chainId) {
-    return await axios.get(`${URL.info.poolBaseInfo}?chainId=${chainId}`);
+  getpoolBaseInfo(chainId: number) {
+    return axios.get(`${URL.info.poolBaseInfo}?chainId=${chainId}`);
   },
-  async getpoolDataInfo(chainId) {
-    return await axios.get(`${URL.info.poolDataInfo}?chainId=${chainId}`);
+
+  /**
+   * 获取资金池数据信息
+   * @param chainId - 区块链网络ID
+   */
+  getpoolDataInfo(chainId: number) {
+    return axios.get(`${URL.info.poolDataInfo}?chainId=${chainId}`);
   },
 };
 
