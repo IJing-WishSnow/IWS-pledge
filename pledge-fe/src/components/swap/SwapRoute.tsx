@@ -5,7 +5,7 @@ import { Flex, Text } from '@pancakeswap-libs/uikit';
 import { ThemeContext } from 'styled-components';
 import CurrencyLogo from '../CurrencyLogo';
 
-export default memo(function SwapRoute({ trade }: { trade: Trade }) {
+export default memo(({ trade }: { trade: Trade }) => {
   const theme = useContext(ThemeContext);
   return (
     <Flex

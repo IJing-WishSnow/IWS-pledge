@@ -7,11 +7,11 @@ import Coin_pool from '_components/Coin_pool';
 
 import './index.less';
 
-type Iparams = {
+interface Iparams {
   coin: string;
   pool: 'BUSD' | 'USDC' | 'DAI';
   mode: 'Borrower' | 'Lender';
-};
+}
 function MarketPage() {
   const history = useHistory();
   const { url: routeUrl, params } = useRouteMatch<Iparams>();

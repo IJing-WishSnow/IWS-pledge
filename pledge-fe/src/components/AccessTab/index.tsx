@@ -63,7 +63,7 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim SP-Token success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim SP-Token success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -99,7 +99,7 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim JP-Token success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim JP-Token success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -135,7 +135,7 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim SP-Token error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim SP-Token error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -170,7 +170,7 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim JP-Token error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim JP-Token error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -180,8 +180,8 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
 
   const dealNumber_18 = (num) => {
     if (num) {
-      let x = new BigNumber(num);
-      let y = new BigNumber(1e18);
+      const x = new BigNumber(num);
+      const y = new BigNumber(1e18);
       return x.dividedBy(y).toFixed();
     }
   };
@@ -292,7 +292,7 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
               <div>
                 {' '}
-                <p className="access_token">{'SP-Token'}</p>
+                <p className="access_token">SP-Token</p>
                 {props.state == '4' ? (
                   <p className="access_num">{0}</p>
                 ) : (
@@ -335,7 +335,7 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
               </div>
               <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                 <div>
-                  <p className="access_token">{'JP-Token'}</p>
+                  <p className="access_token">JP-Token</p>
                   {props.state == '4' ? (
                     <p className="access_num">{0}</p>
                   ) : (
@@ -390,8 +390,6 @@ const AccessTab: React.FC<IAccessTab> = ({ className, style, mode, props, statei
             : claimAmountborrow == 0
             ? true
             : hasNoClaim == true
-            ? true
-            : false
         }
       >
         Claim

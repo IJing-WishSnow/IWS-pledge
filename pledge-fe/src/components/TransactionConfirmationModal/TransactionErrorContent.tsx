@@ -5,7 +5,10 @@ import { AlertTriangle } from 'react-feather';
 import { AutoColumn } from '../Column';
 import { Wrapper, Section, BottomSection, ContentHeader } from './helpers';
 
-type TransactionErrorContentProps = { message: string; onDismiss: () => void };
+interface TransactionErrorContentProps {
+  message: string;
+  onDismiss: () => void;
+}
 
 const TransactionErrorContent = ({ message, onDismiss }: TransactionErrorContentProps) => {
   const theme = useContext(ThemeContext);

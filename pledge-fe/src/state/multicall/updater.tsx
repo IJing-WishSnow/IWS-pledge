@@ -69,9 +69,7 @@ export function activeListeningKeys(
         if (blocksPerFetch <= 0) return false;
         return keyListeners[blocksPerFetch] > 0;
       })
-      .reduce((previousMin, current) => {
-        return Math.min(previousMin, parseInt(current));
-      }, Infinity);
+      .reduce((previousMin, current) => Math.min(previousMin, parseInt(current)), Infinity);
     return memo;
   }, {});
 }
@@ -121,13 +119,15 @@ export default function Updater(): null {
   const multicallContract = useMulticallContract();
   const cancellations = useRef<{ blockNumber: number; cancellations: (() => void)[] }>();
 
-  const listeningKeys: { [callKey: string]: number } = useMemo(() => {
-    return activeListeningKeys(debouncedListeners, chainId);
-  }, [debouncedListeners, chainId]);
+  const listeningKeys: { [callKey: string]: number } = useMemo(
+    () => activeListeningKeys(debouncedListeners, chainId),
+    [debouncedListeners, chainId],
+  );
 
-  const unserializedOutdatedCallKeys = useMemo(() => {
-    return outdatedListeningKeys(state.callResults, listeningKeys, chainId, latestBlockNumber);
-  }, [chainId, state.callResults, listeningKeys, latestBlockNumber]);
+  const unserializedOutdatedCallKeys = useMemo(
+    () => outdatedListeningKeys(state.callResults, listeningKeys, chainId, latestBlockNumber),
+    [chainId, state.callResults, listeningKeys, latestBlockNumber],
+  );
 
   const serializedOutdatedCallKeys = useMemo(
     () => JSON.stringify(unserializedOutdatedCallKeys.sort()),

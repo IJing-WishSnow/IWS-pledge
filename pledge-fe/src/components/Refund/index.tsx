@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import { Tooltip } from 'antd';
+import { Tooltip, Progress, notification, Divider, Space } from 'antd';
 import { QuestionCircleOutlined } from '@ant-design/icons';
 import { useWeb3React, UnsupportedChainIdError } from '@web3-react/core';
-import { Progress, notification, Divider, Space } from 'antd';
 import Success from '_src/assets/images/Success.png';
 import Error from '_src/assets/images/Error.png';
 import icon3 from '_src/assets/images/icon (3).png';
@@ -69,7 +68,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim refund success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim refund success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -105,7 +104,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim refund success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim refund success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -141,7 +140,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim refund error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim refund error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -176,7 +175,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim refund error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim refund error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -185,8 +184,8 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
   };
   const dealNumber_18 = (num) => {
     if (num) {
-      let x = new BigNumber(num);
-      let y = new BigNumber(1e18);
+      const x = new BigNumber(num);
+      const y = new BigNumber(1e18);
       return Math.floor(Number(x.dividedBy(y)) * Math.pow(10, 7)) / Math.pow(10, 7);
     }
   };
@@ -316,7 +315,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
                       setloadings(true), getRefund();
                     }}
                     loading={loadings}
-                    disabled={hasNoClaim == false ? false : true}
+                    disabled={hasNoClaim != false}
                   >
                     Claim
                   </Button>
@@ -326,7 +325,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
                       setloadings(true), getRefund();
                     }}
                     loading={loadings}
-                    disabled={refundLend !== 0 ? (hasNoClaim == false ? false : true) : true}
+                    disabled={refundLend !== 0 ? hasNoClaim != false : true}
                   >
                     Claim
                   </Button>
@@ -337,7 +336,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
                 <p>
                   <span> Wait for the settlement date to get back the unmatched quota</span>
                 </p>
-                <Button disabled={true}>Claim</Button>
+                <Button disabled>Claim</Button>
               </div>
             )}
           </li>
@@ -389,7 +388,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
                     onClick={() => {
                       setloadings(true), getRefund();
                     }}
-                    disabled={hasNoClaim == false ? false : true}
+                    disabled={hasNoClaim != false}
                     loading={loadings}
                   >
                     Claim
@@ -399,7 +398,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
                     onClick={() => {
                       setloadings(true), getRefund();
                     }}
-                    disabled={refundBorrow !== 0 ? (hasNoClaim == false ? false : true) : true}
+                    disabled={refundBorrow !== 0 ? hasNoClaim != false : true}
                     loading={loadings}
                   >
                     Claim
@@ -411,7 +410,7 @@ const Refund: React.FC<IRefund> = ({ className, style, mode, stateinfo, props })
                 <p>
                   <span> Wait for the settlement date to get back the unmatched quota</span>
                 </p>
-                <Button disabled={true}>Claim</Button>
+                <Button disabled>Claim</Button>
               </div>
             )}
           </li>

@@ -68,15 +68,13 @@ padding:16px
 `;
 // TODO: Fix UI Kit typings
 
-const SettingsModal = ({ translateString }) => {
-  return (
-    <Settingtab className="Settingtab">
-      <Modal title="Transaction Settings">
-        <SlippageToleranceSetting translateString={translateString} />
-        <TransactionDeadlineSetting translateString={translateString} />
-      </Modal>
-    </Settingtab>
-  );
-};
+const SettingsModal = ({ translateString }) => (
+  <Settingtab className="Settingtab">
+    <Modal title="Transaction Settings">
+      <SlippageToleranceSetting translateString={translateString} />
+      <TransactionDeadlineSetting translateString={translateString} />
+    </Modal>
+  </Settingtab>
+);
 
 export default SettingsModal;

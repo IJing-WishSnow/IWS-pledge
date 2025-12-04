@@ -12,11 +12,9 @@ const initialState: BurnState = {
 };
 
 export default createReducer<BurnState>(initialState, (builder) =>
-  builder.addCase(typeInput, (state, { payload: { field, typedValue } }) => {
-    return {
-      ...state,
-      independentField: field,
-      typedValue,
-    };
-  }),
+  builder.addCase(typeInput, (state, { payload: { field, typedValue } }) => ({
+    ...state,
+    independentField: field,
+    typedValue,
+  })),
 );

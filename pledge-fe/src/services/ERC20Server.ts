@@ -1,9 +1,9 @@
-import { gasOptions, getERC20Contract, getDefaultAccount } from './web3';
 import type { ERC20 } from '_src/contracts/ERC20';
 import { pledge_address, ORACLE_address, pledge_mainaddress } from '_src/utils/constants';
+import { gasOptions, getERC20Contract, getDefaultAccount } from './web3';
 
 const ERC20Server = {
-  //获取余额
+  // 获取余额
   async balanceOf(contractAddress) {
     const contract = getERC20Contract(contractAddress);
     const account = await getDefaultAccount();
@@ -11,7 +11,7 @@ const ERC20Server = {
     return rates;
   },
 
-  //授权
+  // 授权
   async Approve(contractAddress, amount, chainId) {
     const contract = getERC20Contract(contractAddress);
     const options = await gasOptions();

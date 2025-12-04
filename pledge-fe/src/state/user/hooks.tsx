@@ -108,9 +108,9 @@ export function useExpertModeManager(): [boolean, () => void] {
 
 export function useUserSlippageTolerance(): [number, (slippage: number) => void] {
   const dispatch = useDispatch<AppDispatch>();
-  const userSlippageTolerance = useSelector<AppState, AppState['user']['userSlippageTolerance']>((state) => {
-    return state.user.userSlippageTolerance;
-  });
+  const userSlippageTolerance = useSelector<AppState, AppState['user']['userSlippageTolerance']>(
+    (state) => state.user.userSlippageTolerance,
+  );
 
   const setUserSlippageTolerance = useCallback(
     (slippageTolerance: number) => {
@@ -124,9 +124,7 @@ export function useUserSlippageTolerance(): [number, (slippage: number) => void]
 
 export function useUserDeadline(): [number, (slippage: number) => void] {
   const dispatch = useDispatch<AppDispatch>();
-  const userDeadline = useSelector<AppState, AppState['user']['userDeadline']>((state) => {
-    return state.user.userDeadline;
-  });
+  const userDeadline = useSelector<AppState, AppState['user']['userDeadline']>((state) => state.user.userDeadline);
 
   const setUserDeadline = useCallback(
     (deadline: number) => {
@@ -237,9 +235,10 @@ export function useTrackedTokenPairs(): [Token, Token][] {
     const forChain = savedSerializedPairs[chainId];
     if (!forChain) return [];
 
-    return Object.keys(forChain).map((pairId) => {
-      return [deserializeToken(forChain[pairId].token0), deserializeToken(forChain[pairId].token1)];
-    });
+    return Object.keys(forChain).map((pairId) => [
+      deserializeToken(forChain[pairId].token0),
+      deserializeToken(forChain[pairId].token1),
+    ]);
   }, [savedSerializedPairs, chainId]);
 
   const combinedList = useMemo(

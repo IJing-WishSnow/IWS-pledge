@@ -7,11 +7,11 @@ import { AutoColumn } from '../Column';
 import { getBscScanLink } from '../../utils';
 import { Wrapper, Section, ConfirmedIcon, ContentHeader } from './helpers';
 
-type TransactionSubmittedContentProps = {
+interface TransactionSubmittedContentProps {
   onDismiss: () => void;
   hash: string | undefined;
   chainId: ChainId;
-};
+}
 
 const TransactionSubmittedContent = ({ onDismiss, chainId, hash }: TransactionSubmittedContentProps) => {
   const theme = useContext(ThemeContext);

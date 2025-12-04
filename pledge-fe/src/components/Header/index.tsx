@@ -25,7 +25,7 @@ import { useActiveWeb3React } from '_src/hooks';
 
 export interface IHeaderProps {}
 
-type Iparams = {};
+interface Iparams {}
 const Header: React.FC<IHeaderProps> = () => {
   const [isOpacity, setIsOpacity] = useState(true);
   const [visable, setVisable] = useState(false);
@@ -132,13 +132,13 @@ const Header: React.FC<IHeaderProps> = () => {
                 style={{ width: '240px', height: '160px', padding: '16px' }}
               >
                 <p style={{ color: ' #8B89A3' }}>Select a network</p>
-                <Menu.Item key={'BSC_Mainnet'} style={{ borderRadius: '12px' }}>
+                <Menu.Item key="BSC_Mainnet" style={{ borderRadius: '12px' }}>
                   <FlexDiv style={{ display: 'flex', justifyContent: 'left' }}>
                     <img src={get(currencyInfos, ['BSC_Mainnet', 'chainImageAsset'])} alt="" width={24} height={24} />
                     <span>BSC-Mainnet</span>
                   </FlexDiv>
                 </Menu.Item>
-                <Menu.Item key={'BSC_Testnet'} style={{ borderRadius: '12px', marginBottom: '10px' }}>
+                <Menu.Item key="BSC_Testnet" style={{ borderRadius: '12px', marginBottom: '10px' }}>
                   <FlexDiv style={{ display: 'flex', justifyContent: 'left' }}>
                     <img src={get(currencyInfos, ['BSC_Testnet', 'chainImageAsset'])} alt="" width={24} height={24} />
                     <span>BSC-Testnet</span>
@@ -170,7 +170,7 @@ const Header: React.FC<IHeaderProps> = () => {
                     style={{ width: '240px', height: '160px', padding: '16px' }}
                   >
                     <p style={{ color: ' #8B89A3' }}>Select a network</p>
-                    <Menu.Item key={'BSC_Mainnet'} style={{ borderRadius: '12px' }}>
+                    <Menu.Item key="BSC_Mainnet" style={{ borderRadius: '12px' }}>
                       <FlexDiv style={{ display: 'flex', justifyContent: 'left' }}>
                         <img
                           src={get(currencyInfos, ['BSC_Mainnet', 'chainImageAsset'])}
@@ -181,7 +181,7 @@ const Header: React.FC<IHeaderProps> = () => {
                         <span>BSC-Mainnet</span>
                       </FlexDiv>
                     </Menu.Item>
-                    <Menu.Item key={'BSC_Testnet'} style={{ borderRadius: '12px', marginBottom: '10px' }}>
+                    <Menu.Item key="BSC_Testnet" style={{ borderRadius: '12px', marginBottom: '10px' }}>
                       <FlexDiv style={{ display: 'flex', justifyContent: 'left' }}>
                         <img
                           src={get(currencyInfos, ['BSC_Testnet', 'chainImageAsset'])}
@@ -208,7 +208,7 @@ const Header: React.FC<IHeaderProps> = () => {
               <img src={list} onClick={() => setVisable(true)} />
             </div>
           </div>
-          <Drawer placement={'top'} closable={false} onClose={() => setVisable(false)} visible={visable} key={'top'}>
+          <Drawer placement="top" closable={false} onClose={() => setVisable(false)} visible={visable} key="top">
             <div className="drawer_header">
               <img src={close} onClick={() => setVisable(false)} />
             </div>

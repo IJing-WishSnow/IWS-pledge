@@ -1,20 +1,20 @@
 // import ChainBridge from '@/constants/ChainBridge';
-import { chainInfoState, walletModalOpen } from './../../model/global';
+import { chainInfoState, walletModalOpen } from '../../model/global';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
-import services from './../../services';
 import { UnsupportedChainIdError, useWeb3React } from '@web3-react/core';
 import type { InjectedConnector } from '@web3-react/injected-connector';
 import { Dropdown, Menu, notification } from 'antd';
 import React, { useEffect, useState } from 'react';
 import styled, { css } from 'styled-components';
-import { injected } from './connector';
-import { useEagerConnect, useInactiveListener } from './WalletHooks';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
-import { HeaderBox } from '../styleComponents';
-import WalletModal from './../WalletModal';
 import ChainBridge from '_constants/ChainBridge';
 import './index.less';
 import { useActiveWeb3React } from '_src/hooks';
+import WalletModal from '../WalletModal';
+import { HeaderBox } from '../styleComponents';
+import { useEagerConnect, useInactiveListener } from './WalletHooks';
+import { injected } from './connector';
+import services from '../../services';
 
 // import { modal } from
 
@@ -70,21 +70,19 @@ const ConnectWallet: React.FC<IConnectWallet> = () => {
   async function activatingConnectorFn() {
     if (activatingConnector && activatingConnector === connector) {
       setActivatingConnector(undefined);
-    } else {
-      if (error instanceof UnsupportedChainIdError) {
-        // console.log(error);
-        // const fraNetworkDefault = ChainBridge.chains
-        //   .filter((item) => item.type === 'Ethereum')
-        //   .find((item) => item.networkId === 525);
-        try {
-          await services.PoolServer.switchNetwork(chainInfo.netWorkInfo);
-        } catch {
-          notification.warning({
-            message: error?.name,
-            description: error?.message,
-            top: 80,
-          });
-        }
+    } else if (error instanceof UnsupportedChainIdError) {
+      // console.log(error);
+      // const fraNetworkDefault = ChainBridge.chains
+      //   .filter((item) => item.type === 'Ethereum')
+      //   .find((item) => item.networkId === 525);
+      try {
+        await services.PoolServer.switchNetwork(chainInfo.netWorkInfo);
+      } catch {
+        notification.warning({
+          message: error?.name,
+          description: error?.message,
+          top: 80,
+        });
       }
     }
   }

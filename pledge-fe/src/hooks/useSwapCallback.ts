@@ -126,12 +126,10 @@ export function useSwapCallback(
             const options = !value || isZero(value) ? {} : { value };
 
             return contract.estimateGas[methodName](...args, options)
-              .then((gasEstimate) => {
-                return {
-                  call,
-                  gasEstimate,
-                };
-              })
+              .then((gasEstimate) => ({
+                call,
+                gasEstimate,
+              }))
               .catch((gasError) => {
                 console.info('Gas estimate failed, trying eth_call to extract error', call);
 

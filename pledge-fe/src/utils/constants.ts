@@ -1,13 +1,13 @@
-//2.0
+// 2.0
 // export const pledge_address = '0x460cD52E2bB8a0547F4fe2ff80cd354CC1A1f43a';
 // export const ORACLE_address = '0x72D8E6144A46b7b51F59831A9D38C7f9E682B7C1';
-//2.1
+// 2.1
 // export const pledge_address = '0xb996788A2471f34ad301dD5090d85521Da252ED4';
 // export const ORACLE_address = '0xd96DBDC193617A0cD4bbf38E78a0fB4799A8E554';
-//2.2
+// 2.2
 // export const pledge_address = '0x216f718A983FCCb462b338FA9c60f2A89199490c';
 // export const ORACLE_address = '0x272aCa56637FDaBb2064f19d64BC3dE64A85A1b2';
-//prop
+// prop
 export const pledge_address = '0x80a4D82f1879c7933ee9aa266E8580abaaa9b7c2';
 export const ORACLE_address = '0x4F72DFa7E151767eC583bbaE7cf878Ed12d6c111';
 

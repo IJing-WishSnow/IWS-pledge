@@ -1,5 +1,5 @@
-import axios from './dataProxy';
 import URL from '_constants/URL';
+import axios from './dataProxy';
 
 /**
  * 用户中心

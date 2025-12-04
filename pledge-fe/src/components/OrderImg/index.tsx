@@ -16,14 +16,12 @@ export interface IOrderImg {
   style?: React.CSSProperties;
 }
 
-const OrderImg: React.FC<IOrderImg> = ({ className, style, img1, img2 }) => {
-  return (
-    <div className={classnames('components_order_img')} style={style}>
-      <img src={img1} alt="" className="img1" />
-      <img src={img2} alt="" className="img2" />
-    </div>
-  );
-};
+const OrderImg: React.FC<IOrderImg> = ({ className, style, img1, img2 }) => (
+  <div className={classnames('components_order_img')} style={style}>
+    <img src={img1} alt="" className="img1" />
+    <img src={img2} alt="" className="img2" />
+  </div>
+);
 
 OrderImg.defaultProps = {
   className: '',

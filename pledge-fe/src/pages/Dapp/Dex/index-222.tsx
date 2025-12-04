@@ -11,10 +11,11 @@ import styled, { css } from 'styled-components';
 import './index.less';
 import { color } from 'echarts';
 import PageHeader from '_components/PageHeader';
+
 const { Option } = Select;
-type Iparams = {
+interface Iparams {
   mode: 'Swap' | 'Liquidity';
-};
+}
 const InputCurrency = styled.div`
   display: flex;
   width: 154px;

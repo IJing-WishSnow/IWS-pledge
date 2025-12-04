@@ -33,10 +33,10 @@ const StyledContentHeader = styled.div`
   }
 `;
 
-type ContentHeaderProps = {
+interface ContentHeaderProps {
   children: ReactNode;
   onDismiss: () => void;
-};
+}
 
 export const ContentHeader = ({ children, onDismiss }: ContentHeaderProps) => (
   <StyledContentHeader>

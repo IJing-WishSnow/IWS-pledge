@@ -20,7 +20,7 @@ const baseUrl = {
 const handler = {
   get(target, key) {
     // get 的trap 拦截get方法
-    let value = target[key];
+    const value = target[key];
     const nowHost = window.location.hostname;
 
     try {
@@ -29,13 +29,13 @@ const handler = {
       if (typeof value === 'string') {
         let base = baseUrl.v21;
         if (nowHost.includes('127.0.0.1') || nowHost.includes('localhost')) {
-          base = baseUrl['v21'];
+          base = baseUrl.v21;
         }
         if (nowHost.includes('dev-v2-pledger')) {
-          base = baseUrl['v21'];
+          base = baseUrl.v21;
         }
         if (nowHost.includes('v2-pldeger')) {
-          base = baseUrl['v22'];
+          base = baseUrl.v22;
         }
         return base + value;
       }

@@ -8,9 +8,10 @@ import Routes from './routes';
 import './index.less';
 import styled from 'styled-components';
 import Popups from '_src/components/Popups';
-type Iparams = {
+
+interface Iparams {
   mode: 'Swap' | 'Liquidity';
-};
+}
 
 const AppWrapper = styled.div`
   display: flex;

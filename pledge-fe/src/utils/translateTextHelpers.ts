@@ -12,9 +12,7 @@ const replaceDynamicString = (foundTranslation: string, fallback: string) => {
 };
 
 export const getTranslation = (translations: Array<any>, translationId: number, fallback: string) => {
-  const foundTranslation = translations.find((translation) => {
-    return translation.data.stringId === translationId;
-  });
+  const foundTranslation = translations.find((translation) => translation.data.stringId === translationId);
   if (foundTranslation) {
     const translatedString = foundTranslation.data.text;
     const includesVariable = translatedString.includes('%');

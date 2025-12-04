@@ -40,7 +40,7 @@ const TestnetTokens: React.FC<ITestnetTokens> = ({ className, style, props, mode
         params: {
           type: 'ERC20',
           options: {
-            address: address,
+            address,
             symbol: coin,
             decimals: 18,
           },
@@ -80,7 +80,7 @@ const TestnetTokens: React.FC<ITestnetTokens> = ({ className, style, props, mode
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Claim success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Claim success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -116,7 +116,7 @@ const TestnetTokens: React.FC<ITestnetTokens> = ({ className, style, props, mode
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'claim error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>claim error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -125,7 +125,7 @@ const TestnetTokens: React.FC<ITestnetTokens> = ({ className, style, props, mode
   };
   return (
     <div style={style}>
-      <DappLayout title={'Get Testnet Tokens'} className="testnetpages">
+      <DappLayout title="Get Testnet Tokens" className="testnetpages">
         <ul>
           <li>
             <img src={BNB} alt="" />

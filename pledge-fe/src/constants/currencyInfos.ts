@@ -6,10 +6,10 @@ import {
   PLEDGER_BRIDGE_ETH_CONTRACT_ADDRESS,
   PLGR_CONTRACT_ADDRESS,
 } from '_utils/constants';
-import type { AddEthereumChainParameter } from './ChainBridge.d';
 import { filter, map } from 'lodash';
+import type { AddEthereumChainParameter } from './ChainBridge.d';
 
-export type CurrencyInfos = {
+export interface CurrencyInfos {
   chainId: number;
   chainName: CurrencyType;
   contractAddress: string;
@@ -19,7 +19,7 @@ export type CurrencyInfos = {
   currencyName: string;
   currencyImageAsset: string;
   netWorkInfo: AddEthereumChainParameter;
-};
+}
 
 const currencyInfos = {
   BSC_Mainnet: {

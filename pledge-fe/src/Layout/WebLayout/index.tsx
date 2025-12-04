@@ -9,13 +9,11 @@ interface IWebLayout {
   className?: string;
 }
 
-const WebLayout: React.FC<IWebLayout> = ({ children, className }) => {
-  return (
-    <div className={classnames('web-layout', className)}>
-      {children}
-      <Footer />
-    </div>
-  );
-};
+const WebLayout: React.FC<IWebLayout> = ({ children, className }) => (
+  <div className={classnames('web-layout', className)}>
+    {children}
+    <Footer />
+  </div>
+);
 
 export default WebLayout;

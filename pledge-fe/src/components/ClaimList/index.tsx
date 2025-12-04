@@ -53,7 +53,7 @@ const ClaimList: React.FC<IClaimList> = ({ className, ...props }) => {
 
   return (
     <div className={classNames('claim_list', className)} {...props}>
-      <Collapse bordered={false} expandIconPosition="right" ghost={true}>
+      <Collapse bordered={false} expandIconPosition="right" ghost>
         <Panel
           header={
             <Row gutter={16}>

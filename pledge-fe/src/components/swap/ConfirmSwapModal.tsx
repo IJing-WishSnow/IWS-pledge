@@ -52,29 +52,33 @@ export default function ConfirmSwapModal({
     [originalTrade, trade],
   );
 
-  const modalHeader = useCallback(() => {
-    return trade ? (
-      <SwapModalHeader
-        trade={trade}
-        allowedSlippage={allowedSlippage}
-        recipient={recipient}
-        showAcceptChanges={showAcceptChanges}
-        onAcceptChanges={onAcceptChanges}
-      />
-    ) : null;
-  }, [allowedSlippage, onAcceptChanges, recipient, showAcceptChanges, trade]);
+  const modalHeader = useCallback(
+    () =>
+      trade ? (
+        <SwapModalHeader
+          trade={trade}
+          allowedSlippage={allowedSlippage}
+          recipient={recipient}
+          showAcceptChanges={showAcceptChanges}
+          onAcceptChanges={onAcceptChanges}
+        />
+      ) : null,
+    [allowedSlippage, onAcceptChanges, recipient, showAcceptChanges, trade],
+  );
 
-  const modalBottom = useCallback(() => {
-    return trade ? (
-      <SwapModalFooter
-        onConfirm={onConfirm}
-        trade={trade}
-        disabledConfirm={showAcceptChanges}
-        swapErrorMessage={swapErrorMessage}
-        allowedSlippage={allowedSlippage}
-      />
-    ) : null;
-  }, [allowedSlippage, onConfirm, showAcceptChanges, swapErrorMessage, trade]);
+  const modalBottom = useCallback(
+    () =>
+      trade ? (
+        <SwapModalFooter
+          onConfirm={onConfirm}
+          trade={trade}
+          disabledConfirm={showAcceptChanges}
+          swapErrorMessage={swapErrorMessage}
+          allowedSlippage={allowedSlippage}
+        />
+      ) : null,
+    [allowedSlippage, onConfirm, showAcceptChanges, swapErrorMessage, trade],
+  );
 
   // text to show while loading
   const pendingText = `Swapping ${trade?.inputAmount?.toSignificant(6)} ${

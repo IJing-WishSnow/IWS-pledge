@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classnames from 'classnames';
 
-import { Progress, notification, Divider, Space } from 'antd';
+import { Progress, notification, Divider, Space, InputNumber, Steps, message, Button } from 'antd';
 import ConnectWallet from '_components/ConnectWallet';
 import BUSD from '_src/assets/images/busd.png';
 import BTCB from '_src/assets/images/btcb.png';
@@ -9,7 +9,6 @@ import USDT from '_assets/images/order_USDT.png';
 import DAI from '_assets/images/order_DAI.png';
 import ETH from '_assets/images/4023 2.png';
 import BNB from '_assets/images/4023 3.png';
-import { InputNumber, Steps, message, Button } from 'antd';
 import services from '_src/services';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import moment from 'moment';
@@ -41,9 +40,9 @@ export interface ICoin_pool {
   pool: string;
   coin: string;
 }
-type Iparams = {
+interface Iparams {
   pid: string;
-};
+}
 const Context = React.createContext({ name: 'Default' });
 const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
   const [data, setData] = useState(0);
@@ -92,7 +91,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Approve success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Approve success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -128,7 +127,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Approve error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Approve error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -164,7 +163,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Lend success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Lend success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -200,7 +199,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Borrow success'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Borrow success</p>{' '}
             <img src={icon3} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -236,7 +235,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Lend error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Lend error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -272,7 +271,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
             <p style={{ fontSize: '16px', lineHeight: '24px', fontWeight: 600, margin: '0' }}>{placement}</p>
           </div>
           <div style={{ display: 'flex', alignItems: 'center' }}>
-            <p style={{ margin: '0 9.4px 0 33px' }}>{'Borrow error'}</p>{' '}
+            <p style={{ margin: '0 9.4px 0 33px' }}>Borrow error</p>{' '}
             <img src={icon4} alt="" style={{ width: '11.2px', height: '11.2px' }} />
           </div>
         </div>
@@ -282,16 +281,16 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
 
   const dealNumber = (num) => {
     if (num) {
-      let x = new BigNumber(num);
-      let y = new BigNumber(1e18);
+      const x = new BigNumber(num);
+      const y = new BigNumber(1e18);
       return x.multipliedBy(y).toFixed();
     }
   };
 
   const dealNumber_18 = (num) => {
     if (num) {
-      let x = new BigNumber(num);
-      let y = new BigNumber(1e18);
+      const x = new BigNumber(num);
+      const y = new BigNumber(1e18);
       return x.dividedBy(y).toFixed();
     }
   };
@@ -302,26 +301,24 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
   };
   const dealNumber_8 = (num) => {
     if (num) {
-      let x = new BigNumber(num);
-      let y = new BigNumber(1e6);
+      const x = new BigNumber(num);
+      const y = new BigNumber(1e6);
       return x.dividedBy(y).toString();
     }
   };
 
   const getPoolInfo = async () => {
-    const datainfo = await services.userServer.getpoolBaseInfo(chainId == undefined ? 56 : chainId).then((res) => {
-      return res;
-    });
+    const datainfo = await services.userServer.getpoolBaseInfo(chainId == undefined ? 56 : chainId).then((res) => res);
     if (datainfo.data.code == 0) {
       const res = datainfo.data.data.map((item, index) => {
-        let maxSupply = dealNumber_18(item.pool_data.maxSupply);
-        let borrowSupply = dealNumber_18(item.pool_data.borrowSupply);
-        let lendSupply = dealNumber_18(item.pool_data.lendSupply);
+        const maxSupply = dealNumber_18(item.pool_data.maxSupply);
+        const borrowSupply = dealNumber_18(item.pool_data.borrowSupply);
+        const lendSupply = dealNumber_18(item.pool_data.lendSupply);
         const settlementdate = moment.unix(item.pool_data.settleTime).format(FORMAT_TIME_STANDARD);
         const maturitydate = moment.unix(item.pool_data.endTime).format(FORMAT_TIME_STANDARD);
-        var difftime = item.pool_data.endTime - item.pool_data.settleTime;
+        const difftime = item.pool_data.endTime - item.pool_data.settleTime;
 
-        var days = parseInt(difftime / 86400 + '');
+        const days = parseInt(`${difftime / 86400}`);
         console.log('state', item.pool_data.state);
         console.log(item.pool_data.autoLiquidateThreshold);
         return {
@@ -329,7 +326,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
           state: item.pool_data.state,
           underlying_asset: item.pool_data.borrowTokenInfo.tokenName,
           fixed_rate: dealNumber_8(item.pool_data.interestRate),
-          maxSupply: maxSupply,
+          maxSupply,
           available_to_lend: [borrowSupply, lendSupply],
           settlement_date: settlementdate,
           length: days,
@@ -353,12 +350,11 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
       });
       setpoolinfo(res);
     } else {
-      return;
     }
   };
   console.log(poolinfo[pid]);
   const getaccountbalance = async () => {
-    var balance = await web3.eth.getBalance(account);
+    const balance = await web3.eth.getBalance(account);
     setaccountbalance(balance);
   };
 
@@ -395,10 +391,10 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
         : setbalanceborrow(accountbalance));
   }, [poolinfo]);
 
-  //每三位加一个小数点
+  // 每三位加一个小数点
   function toThousands(num) {
-    var str = num.toString();
-    var reg = str.indexOf('.') > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
+    const str = num.toString();
+    const reg = str.indexOf('.') > -1 ? /(\d)(?=(\d{3})+\.)/g : /(\d)(?=(?:\d{3})+$)/g;
     return str.replace(reg, '$1,');
   }
 
@@ -455,14 +451,16 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
         <div className="coin_pool_box_info">
           <p className="info_title">
             <span>
-              <span style={{ backgroundColor: '#FFA011' }}></span>
+              <span style={{ backgroundColor: '#FFA011' }} />
               Lending Amount
             </span>
             <span>
-              <span style={{ backgroundColor: '#5D52FF' }}></span>Available To Lend
+              <span style={{ backgroundColor: '#5D52FF' }} />
+              Available To Lend
             </span>
             <span className="total_lend">
-              <span style={{ backgroundColor: '#F5F5FA' }}></span>Total Lend
+              <span style={{ backgroundColor: '#F5F5FA' }} />
+              Total Lend
             </span>
           </p>
 
@@ -747,16 +745,20 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
                         style={{ width: '48%', borderRadius: '15px' }}
                         loading={loadings}
                         onClick={async () => {
-                          var currentTime = Math.round(new Date().getTime() / 1000).toString();
+                          const currentTime = Math.round(new Date().getTime() / 1000).toString();
                           if ((poolinfo[pid]?.state ?? 0) > 2) {
                             return setwarning('The pool has finished');
-                          } else if (lendvalue > (poolinfo[pid]?.maxSupply ?? 0)) {
+                          }
+                          if (lendvalue > (poolinfo[pid]?.maxSupply ?? 0)) {
                             return setwarning('Maximum exceeded');
-                          } else if (currentTime > (poolinfo[pid]?.settleTime ?? 0)) {
+                          }
+                          if (currentTime > (poolinfo[pid]?.settleTime ?? 0)) {
                             return setwarning('Over time');
-                          } else if (lendvalue > (balance && Number(dealNumber_18(balance)))) {
+                          }
+                          if (lendvalue > (balance && Number(dealNumber_18(balance)))) {
                             return setwarning('transfer amount exceeds balance');
-                          } else if (
+                          }
+                          if (
                             Number(lendvalue) + Number(poolinfo[pid]?.available_to_lend[1] ?? 0) >
                             Number(poolinfo[pid]?.maxSupply ?? 0)
                           ) {
@@ -764,7 +766,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
                           }
                           setwarning('');
                           setloadings(true);
-                          let num = dealNumber(lendvalue);
+                          const num = dealNumber(lendvalue);
                           await services.ERC20Server.Approve(poolinfo[pid]?.Sp ?? 0, num, chainId)
                             .then(() => {
                               openNotification('Success');
@@ -775,48 +777,48 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
                               openNotificationerror('Error'), setloadings(false);
                             });
 
-                          //授权的SPtoken
+                          // 授权的SPtoken
                           await services.ERC20Server.allowance(poolinfo[pid]?.Sp ?? 0, chainId).catch(() =>
                             console.error(),
                           );
                         }}
-                        disabled={lendvalue == 0 || lendvalue == null ? true : false}
+                        disabled={!!(lendvalue == 0 || lendvalue == null)}
                       >
                         Approve
                       </Button1>
                     </Context.Provider>
                   )}
-                  <Button1
-                    style={{ width: '48%' }}
-                    disabled={true}
-                    onClick={() => message.success('Processing complete!')}
-                  >
+                  <Button1 style={{ width: '48%' }} disabled onClick={() => message.success('Processing complete!')}>
                     Lend
                   </Button1>
                 </>
               )}
               {current === steps.length - 1 && (
                 <>
-                  <Button1 style={{ width: '48%', borderRadius: '15px' }} disabled={true} onClick={() => next()}>
+                  <Button1 style={{ width: '48%', borderRadius: '15px' }} disabled onClick={() => next()}>
                     Approve
                   </Button1>
                   <Button1
                     loading={loadings}
                     style={{ width: '48%', borderRadius: '15px' }}
                     onClick={async () => {
-                      let num = dealNumber(lendvalue);
+                      const num = dealNumber(lendvalue);
                       console.log(num, lendvalue);
-                      var currentTime = Math.round(new Date().getTime() / 1000).toString();
+                      const currentTime = Math.round(new Date().getTime() / 1000).toString();
 
                       if ((poolinfo[pid]?.state ?? 0) > 2) {
                         return setwarning('The pool has finished');
-                      } else if (lendvalue > (poolinfo[pid]?.maxSupply ?? 0)) {
+                      }
+                      if (lendvalue > (poolinfo[pid]?.maxSupply ?? 0)) {
                         return setwarning('Maximum exceeded');
-                      } else if (currentTime > (poolinfo[pid]?.settleTime ?? 0)) {
+                      }
+                      if (currentTime > (poolinfo[pid]?.settleTime ?? 0)) {
                         return setwarning('Over time');
-                      } else if (lendvalue > (balance && Number(dealNumber_18(balance)))) {
+                      }
+                      if (lendvalue > (balance && Number(dealNumber_18(balance)))) {
                         return setwarning('transfer amount exceeds balance');
-                      } else if (
+                      }
+                      if (
                         Number(lendvalue) + Number(poolinfo[pid]?.available_to_lend[1] ?? 0) >
                         Number(poolinfo[pid]?.maxSupply ?? 0)
                       ) {
@@ -866,19 +868,21 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
                       onClick={async () => {
                         console.log(Math.round(data * Math.pow(10, 18)) / Math.pow(10, 18));
 
-                        var currentTime = Math.round(new Date().getTime() / 1000).toString();
+                        const currentTime = Math.round(new Date().getTime() / 1000).toString();
                         if (borrowvalue > (poolinfo[pid]?.maxSupply ?? 0)) {
                           return setwarning('Maximum exceeded');
-                        } else if (currentTime > (poolinfo[pid]?.settleTime ?? 0)) {
+                        }
+                        if (currentTime > (poolinfo[pid]?.settleTime ?? 0)) {
                           return setwarning('Over time');
-                        } else if (data > (balanceborrow && Number(dealNumber_18(balanceborrow)))) {
+                        }
+                        if (data > (balanceborrow && Number(dealNumber_18(balanceborrow)))) {
                           return setwarning('transfer amount exceeds balance');
                         }
 
                         setwarning('');
                         setloadings(true);
 
-                        let borrownum = dealNumber(Math.round(data * Math.pow(10, 18)) / Math.pow(10, 18));
+                        const borrownum = dealNumber(Math.round(data * Math.pow(10, 18)) / Math.pow(10, 18));
                         await services.ERC20Server.Approve(poolinfo[pid]?.Jp ?? 0, borrownum, chainId)
                           .then(() => {
                             openNotification('Success');
@@ -892,20 +896,16 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
                         // // // //授权的JPtoken
                         await services.ERC20Server.allowance(poolinfo[pid]?.Jp ?? 0, chainId)
                           .then((data) => {
-                            console.log('授权' + data);
+                            console.log(`授权${data}`);
                           })
                           .catch(() => console.error());
                       }}
-                      disabled={data == 0 || data == null ? true : false}
+                      disabled={!!(data == 0 || data == null)}
                     >
                       Approve
                     </Button1>
                   )}
-                  <Button1
-                    style={{ width: '48%' }}
-                    disabled={true}
-                    onClick={() => message.success('Processing complete!')}
-                  >
+                  <Button1 style={{ width: '48%' }} disabled onClick={() => message.success('Processing complete!')}>
                     Borrow
                   </Button1>
                 </>
@@ -913,7 +913,7 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
 
               {current === steps.length - 1 && (
                 <>
-                  <Button1 style={{ width: '48%', borderRadius: '15px' }} disabled={true} onClick={() => next()}>
+                  <Button1 style={{ width: '48%', borderRadius: '15px' }} disabled onClick={() => next()}>
                     Approve
                   </Button1>
                   <Button1
@@ -922,21 +922,23 @@ const Coin_pool: React.FC<ICoin_pool> = ({ mode, pool, coin }) => {
                     onClick={async () => {
                       //  window.open(pageURL.Lend_Borrow.replace(':mode', `${mode}`));
                       setloadings(true);
-                      var timestamp = Math.round(new Date().getTime() / 1000).toString();
+                      const timestamp = Math.round(new Date().getTime() / 1000).toString();
                       console.log(timestamp);
                       if (borrowvalue > (poolinfo[pid]?.maxSupply ?? 0)) {
                         return setwarning('Maximum exceeded');
-                      } else if (timestamp > (poolinfo[pid]?.settleTime ?? 0)) {
+                      }
+                      if (timestamp > (poolinfo[pid]?.settleTime ?? 0)) {
                         return setwarning('Over time');
-                      } else if (data > (balanceborrow && Number(dealNumber_18(balanceborrow)))) {
+                      }
+                      if (data > (balanceborrow && Number(dealNumber_18(balanceborrow)))) {
                         return setwarning('transfer amount exceeds balance');
                       }
 
                       // // 授权
-                      let borrownum = dealNumber(Math.floor(data * Math.pow(10, 18)) / Math.pow(10, 18));
+                      const borrownum = dealNumber(Math.floor(data * Math.pow(10, 18)) / Math.pow(10, 18));
                       console.log(borrownum);
 
-                      //borrow方法
+                      // borrow方法
                       services.PoolServer.depositBorrow(pid, borrownum, timestamp, poolinfo[pid]?.Jp ?? 0, chainId)
                         .then(() => {
                           openNotificationborrow('Success');

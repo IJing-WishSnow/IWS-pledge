@@ -63,17 +63,15 @@ export default function ProgressCircles({ steps }: ProgressCirclesProps) {
   return (
     <Wrapper justify="center">
       <Grouping>
-        {steps.map((step, i) => {
-          return (
-            // eslint-disable-next-line react/no-array-index-key
-            <CircleRow key={i}>
-              <Circle confirmed={step} disabled={!steps[i - 1] && i !== 0}>
-                {step ? '✓' : i + 1}
-              </Circle>
-              <Connector prevConfirmed={step} />
-            </CircleRow>
-          );
-        })}
+        {steps.map((step, i) => (
+          // eslint-disable-next-line react/no-array-index-key
+          <CircleRow key={i}>
+            <Circle confirmed={step} disabled={!steps[i - 1] && i !== 0}>
+              {step ? '✓' : i + 1}
+            </Circle>
+            <Connector prevConfirmed={step} />
+          </CircleRow>
+        ))}
         <Circle disabled={!steps[steps.length - 1]}>{steps.length + 1}</Circle>
       </Grouping>
     </Wrapper>
