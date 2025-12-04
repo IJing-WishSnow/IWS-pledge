@@ -24,7 +24,7 @@ module.exports = {
     'react/sort-comp': 'off',
     'import/extensions': 'off',
     'react/jsx-filename-extension': [1, { extensions: ['.js', '.jsx', '.ts', '.tsx'] }],
-    //  取消 .d.ts 声明文件中使用了 constructor 报错 问题
+    // 取消 .d.ts 声明文件中使用了 constructor 报错
     'no-useless-constructor': 'off',
     '@typescript-eslint/no-useless-constructor': 'error',
     'react-hooks/rules-of-hooks': 'error',
@@ -34,6 +34,25 @@ module.exports = {
         additionalHooks: 'useRecoilCallback',
       },
     ],
+
+    // ========== 新增规则修复 ==========
+
+    // 修复 React 使用前未定义错误
+    'no-use-before-define': 'off', // 关闭 ESLint 默认规则
+    '@typescript-eslint/no-use-before-define': ['error'], // 使用 TypeScript 规则
+
+    // 修复箭头函数体风格警告
+    'arrow-body-style': ['error', 'as-needed'],
+
+    // 修复 props spreading 警告（根据项目需要选择）
+    'react/jsx-props-no-spreading': 'off', // 关闭规则，允许 props spreading
+
+    // 修复默认导入问题
+    'import/prefer-default-export': 'off',
+
+    // 修复 React 版本检测问题
+    'react/jsx-uses-react': 'off', // React 17+ 不需要显式导入 React
+    'react/react-in-jsx-scope': 'off', // React 17+ 不需要
   },
   overrides: [
     {
@@ -45,8 +64,13 @@ module.exports = {
   ],
   settings: {
     'import/resolver': {
+      // 添加 TypeScript 解析器（使用刚才安装的插件）
+      typescript: {
+        alwaysTryTypes: true, // 始终尝试 TypeScript 解析
+        project: path.resolve(__dirname, './tsconfig.json'), // 指定 tsconfig 路径
+      },
       node: {
-        extensions: ['.js', '.less', '.jsx', '.json', '.jsonc', '.wasm'],
+        extensions: ['.js', '.less', '.jsx', '.json', '.jsonc', '.wasm', '.ts', '.tsx'], // 添加 .ts 和 .tsx
       },
       alias: {
         map: [
@@ -58,7 +82,7 @@ module.exports = {
           ['_assets', path.resolve(__dirname, 'src/assets/')],
           ['_abis', path.resolve(__dirname, 'src/abis/')],
         ],
-        extensions: ['.js', '.less', '.jsx', '.json', '.jsonc', '.wasm'],
+        extensions: ['.js', '.less', '.jsx', '.json', '.jsonc', '.wasm', '.ts', '.tsx'], // 添加 .ts 和 .tsx
       },
     },
   },

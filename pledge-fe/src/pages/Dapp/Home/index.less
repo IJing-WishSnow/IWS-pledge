@@ -33,6 +33,85 @@
     }
   }
 
+  .totalFinancing {
+    .ant-progress {
+      margin-bottom: 8px;
+    }
+  }
+
+  .totalFinancing__footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .totalFinancing__headline {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 12px;
+  }
+
+  .totalFinancing__borrow {
+    color: #ffa011;
+  }
+
+  .totalFinancing__lend {
+    color: #5d52ff;
+  }
+
+  .totalFinancing__separator {
+    color: #8b89a3;
+  }
+
+  .totalFinancing__max {
+    color: #262533;
+    font-size: 12px;
+  }
+
+  .collateralization-cell {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .detail-button {
+    width: 107px;
+    height: 40px;
+    color: #fff;
+    border-radius: 15px;
+    line-height: 40px;
+  }
+
+  .asset-trigger {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-right: 10px;
+    }
+  }
+
+  .asset-trigger:focus {
+    outline: 1px solid #5d52ff;
+    border-radius: 8px;
+  }
+
+  .asset-trigger__label {
+    color: #262533;
+    font-size: 16px;
+  }
+
   .ant-progress-success-bg {
     background-color: #ffa011;
   }
@@ -322,9 +401,22 @@
 
   .close {
     position: absolute;
-    top: 30px;
-    left: 458px;
-    width: 12px;
+    top: 24px;
+    left: 452px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+
+    img {
+      width: 12px;
+      height: 12px;
+    }
   }
 
   .ant-popover-inner-content {
@@ -385,6 +477,18 @@
       }
     }
   }
+}
+
+.dropdown-trigger-button {
+  border: none;
+  cursor: pointer;
+  font: inherit;
+  background: none;
+  padding: 0;
+}
+
+.dropdown-trigger-button:focus {
+  outline: none;
 }
 
 @media only screen and (max-width: 576px) {

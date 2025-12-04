@@ -54,7 +54,7 @@ contract PledgePool is ReentrancyGuard, SafeTransfer, multiSignatureClient{
         uint256 autoLiquidateThreshold; // 自动清算阈值 (触发清算阈值)
     }
     // total base pool.
-    PoolBaseInfo[] public poolBaseInfo;
+    PoolBaseInfo[] public poolBaseInfo; 
 
        // 每个池的数据信息
     struct PoolDataInfo{

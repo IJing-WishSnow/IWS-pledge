@@ -1,17 +1,23 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useCallback } from 'react';
 
 import ThemeLight from '_assets/images/theme_light.svg';
 import ThemeDark from '_assets/images/theme_dark.svg';
 
 import './index.less';
+
 interface ThemeContextInjected {
   theme: string; // 当前主题
-  setTheme: React.Dispatch<string>; // 修改当前主题状态
+  setTheme: React.Dispatch<React.SetStateAction<string>>; // 修改当前主题状态
 }
 
 export const ThemeContext = React.createContext<ThemeContextInjected>({} as ThemeContextInjected);
 
-export const ThemeProvider: React.FC = ({ children }) => {
+// 修复：添加 Props 类型定义，包含 children
+interface ThemeProviderProps {
+  children: React.ReactNode;
+}
+
+export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
   const [theme, setTheme] = useState<string>(localStorage.getItem('theme') ?? 'dark');
 
   useEffect(() => {
@@ -20,8 +26,10 @@ export const ThemeProvider: React.FC = ({ children }) => {
   }, [theme]);
 
   useEffect(() => {
-    let mediaQueryListDark = window.matchMedia('(prefers-color-scheme: dark)');
-    mediaQueryListDark.onchange = (mediaQueryListEvent) => {
+    // 修复：类型声明为 MediaQueryList | null
+    let mediaQueryListDark: MediaQueryList | null = window.matchMedia('(prefers-color-scheme: dark)');
+
+    const handleChange = (mediaQueryListEvent: MediaQueryListEvent) => {
       if (mediaQueryListEvent.matches) {
         setTheme('dark');
       } else {
@@ -29,9 +37,16 @@ export const ThemeProvider: React.FC = ({ children }) => {
       }
     };
 
+    // 修复：检查 mediaQueryListDark 是否存在
+    if (mediaQueryListDark) {
+      mediaQueryListDark.addEventListener('change', handleChange);
+    }
+
     return () => {
-      mediaQueryListDark.onchange = null;
-      mediaQueryListDark = null;
+      if (mediaQueryListDark) {
+        mediaQueryListDark.removeEventListener('change', handleChange);
+        mediaQueryListDark = null;
+      }
     };
   }, []);
 
@@ -48,18 +63,33 @@ export const ThemeProvider: React.FC = ({ children }) => {
  */
 const SwitchThemes: React.FC = () => {
   const { theme, setTheme } = useContext(ThemeContext);
-  const handleToggleThemes = (value) => {
-    return () => {
-      theme !== value && setTheme(value);
-    };
-  };
 
+  // 修复箭头函数体风格：直接返回函数
+  const handleToggleThemes = useCallback(
+    (value: string) => () => {
+      if (theme !== value) {
+        setTheme(value);
+      }
+    },
+    [theme, setTheme],
+  );
+
+  // 修复：将 img 替换为 button 元素，解决可访问性问题
   return (
     <div className="components-switch-themes">
       {theme === 'light' ? (
-        <img src={ThemeDark} onClick={handleToggleThemes('dark')} />
+        <button type="button" className="theme-button" aria-label="切换到深色主题" onClick={handleToggleThemes('dark')}>
+          <img src={ThemeDark} alt="深色主题图标" />
+        </button>
       ) : (
-        <img src={ThemeLight} onClick={handleToggleThemes('light')} />
+        <button
+          type="button"
+          className="theme-button"
+          aria-label="切换到浅色主题"
+          onClick={handleToggleThemes('light')}
+        >
+          <img src={ThemeLight} alt="浅色主题图标" />
+        </button>
       )}
     </div>
   );

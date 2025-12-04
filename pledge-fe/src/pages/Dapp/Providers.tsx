@@ -9,18 +9,26 @@ import { ThemeContextProvider } from './ThemeContext';
 
 const Web3ProviderNetwork = createWeb3ReactRoot(NetworkContextName);
 
-const Providers: React.FC = ({ children }) => {
-  return (
-    <Web3ReactProvider getLibrary={getLibrary}>
-      <Web3ProviderNetwork getLibrary={getLibrary}>
-        <Provider store={store}>
-          <ThemeContextProvider>
-            <ModalProvider>{children}</ModalProvider>
-          </ThemeContextProvider>
-        </Provider>
-      </Web3ProviderNetwork>
-    </Web3ReactProvider>
-  );
+interface ProvidersProps {
+  children?: React.ReactNode;
+}
+
+const AnyModalProvider = ModalProvider as React.ComponentType<any>;
+
+const Providers = ({ children }: ProvidersProps) => (
+  <Web3ReactProvider getLibrary={getLibrary}>
+    <Web3ProviderNetwork getLibrary={getLibrary}>
+      <Provider store={store}>
+        <ThemeContextProvider>
+          <AnyModalProvider>{children}</AnyModalProvider>
+        </ThemeContextProvider>
+      </Provider>
+    </Web3ProviderNetwork>
+  </Web3ReactProvider>
+);
+
+Providers.defaultProps = {
+  children: null,
 };
 
 export default Providers;

@@ -1,34 +1,44 @@
-import React, { useState } from 'react'
-import { ThemeProvider as SCThemeProvider } from 'styled-components'
-import { light, dark } from '@pancakeswap-libs/uikit'
+import React from 'react';
+import { ThemeProvider as SCThemeProvider } from 'styled-components';
+import { light, dark } from '@pancakeswap-libs/uikit';
 
-const CACHE_KEY = 'IS_DARK'
+const CACHE_KEY = 'IS_DARK';
 
 export interface ThemeContextType {
   isDark: boolean;
   toggleTheme: () => void;
 }
 
-const ThemeContext = React.createContext<ThemeContextType>({ isDark: false, toggleTheme: () => null })
+export const ThemeContext = React.createContext<ThemeContextType>({
+  isDark: false,
+  toggleTheme: () => null,
+});
 
-const ThemeContextProvider: React.FC = ({ children }) => {
-  const [isDark, setIsDark] = useState(() => {
-    const isDarkUserSetting = localStorage.getItem(CACHE_KEY)
-    return isDarkUserSetting ? JSON.parse(isDarkUserSetting) : false
-  })
+interface ThemeContextProviderProps {
+  children?: React.ReactNode;
+}
+
+export const ThemeContextProvider: React.FC<ThemeContextProviderProps> = ({ children }) => {
+  const [isDark, setIsDark] = React.useState<boolean>(() => {
+    const isDarkUserSetting = localStorage.getItem(CACHE_KEY);
+    return isDarkUserSetting ? JSON.parse(isDarkUserSetting) : false;
+  });
 
   const toggleTheme = () => {
-    setIsDark((prevState: any) => {
-      localStorage.setItem(CACHE_KEY, JSON.stringify(!prevState))
-      return !prevState
-    })
-  }
+    setIsDark((prevState) => {
+      const nextValue = !prevState;
+      localStorage.setItem(CACHE_KEY, JSON.stringify(nextValue));
+      return nextValue;
+    });
+  };
 
   return (
     <ThemeContext.Provider value={{ isDark, toggleTheme }}>
       <SCThemeProvider theme={isDark ? dark : light}>{children}</SCThemeProvider>
     </ThemeContext.Provider>
-  )
-}
+  );
+};
 
-export { ThemeContext, ThemeContextProvider }
+ThemeContextProvider.defaultProps = {
+  children: null,
+};

@@ -4,7 +4,7 @@
   "description": "Pledge aims to be the crypto-asset lending platform for non-traders. ",
   "main": "index.js",
   "scripts": {
-    "dev": "export SET NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=development REACT_APP_CHAIN_ID='97' webpack serve  --config ./build/dev.js",
+    "dev": "cross-env NODE_OPTIONS=--openssl-legacy-provider NODE_ENV=development REACT_APP_CHAIN_ID='97' webpack serve --config ./build/dev.js",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && cross-env NODE_ENV=production REACT_APP_CHAIN_ID='56' webpack --config ./build/pro.js",
     "lint": "yarn run lint-eslint && yarn run lint-stylelint",
     "lint-eslint": "eslint -c .eslintrc.js --ext .js {src,build}/**/*.js",
@@ -52,6 +52,7 @@
     "eslint-config-airbnb": "^18.2.1",
     "eslint-config-prettier": "^8.2.0",
     "eslint-import-resolver-alias": "^1.1.2",
+    "eslint-import-resolver-typescript": "^4.4.4",
     "eslint-plugin-eslint-comments": "^3.2.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-jsx-a11y": "^6.4.1",
@@ -97,6 +98,7 @@
     "webpackbar": "^5.0.0-3"
   },
   "dependencies": {
+    "@ant-design/icons": "^4.8.3",
     "@babel/runtime": "^7.14.6",
     "@binance-chain/bsc-connector": "^1.0.0",
     "@csstools/normalize.css": "^11.0.1",
@@ -141,6 +143,7 @@
     "lodash.flatmap": "^4.5.0",
     "mobx": "^6.2.0",
     "mobx-react": "^7.1.0",
+    "moment": "^2.30.1",
     "ms.macro": "^2.0.0",
     "os-browserify": "^0.3.0",
     "p-min-delay": "^3.2.0",
